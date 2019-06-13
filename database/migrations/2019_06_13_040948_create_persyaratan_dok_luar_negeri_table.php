@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreatePersyaratanDokLuarNegeriTable
+ extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +14,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('persyaratan_dok_luar_negeri', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->unsignedBigInteger('role_id')->nullable();
-            $table->string('negeri')->nullable();
-            $table->rememberToken();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('sni')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('persyaratan_dok_luar_negeri');
     }
 }
