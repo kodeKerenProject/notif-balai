@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/sa', function () {
+    return view('applySA');
+});
+
+Route::post('/sa', 'SAController@applySA');

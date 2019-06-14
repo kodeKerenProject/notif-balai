@@ -15,7 +15,7 @@ class CreateLaporanAuditTable extends Migration
     {
         Schema::create('laporan_audit', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('produk_id')->nullable();
             $table->unsignedBigInteger('laporan_audit_maker_id')->nullable();
             $table->unsignedBigInteger('tinjauan_pp_id')->nullable();
             $table->string('kelengkapan')->nullable();

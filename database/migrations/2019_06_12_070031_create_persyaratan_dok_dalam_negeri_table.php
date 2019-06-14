@@ -15,7 +15,7 @@ class CreatePersyaratanDokDalamNegeriTable extends Migration
     {
         Schema::create('persyaratan_dok_dalam_negeri', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('produk_id')->nullable();
             $table->string('sni')->nullable();
             $table->string('surat_permohonan_sertifikat_sni')->nullable();
             $table->string('daftar_isian_kuesioner')->nullable();

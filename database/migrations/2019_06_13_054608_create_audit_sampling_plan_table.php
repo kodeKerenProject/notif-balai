@@ -15,7 +15,7 @@ class CreateAuditSamplingPlanTable extends Migration
     {
         Schema::create('audit_sampling_plan', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('produk_id')->nullable();
             $table->unsignedBigInteger('audit_sampling_plan_maker_id');
             $table->string('audit_plan')->nullable();
             $table->string('sampling_plan')->nullable();

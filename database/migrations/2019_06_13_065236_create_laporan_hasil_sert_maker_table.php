@@ -26,11 +26,11 @@ class CreateLaporanHasilSertMakerTable extends Migration
         });
 
         Schema::table('persyaratan_dok_dalam_negeri', function(Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::table('persyaratan_dok_luar_negeri', function(Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::table('notif_log', function(Blueprint $table) {
@@ -42,7 +42,7 @@ class CreateLaporanHasilSertMakerTable extends Migration
         });
 
         Schema::table('laporan_audit', function(Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::table('laporan_audit', function(Blueprint $table) {
@@ -58,7 +58,7 @@ class CreateLaporanHasilSertMakerTable extends Migration
         });
 
         Schema::table('audit_sampling_plan', function(Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::table('audit_sampling_plan', function(Blueprint $table) {
@@ -78,7 +78,7 @@ class CreateLaporanHasilSertMakerTable extends Migration
         });
 
         Schema::table('mou', function(Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::table('mou', function(Blueprint $table) {
@@ -90,7 +90,7 @@ class CreateLaporanHasilSertMakerTable extends Migration
         });
 
         Schema::table('bid_price', function(Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::table('bid_price', function(Blueprint $table) {
@@ -110,7 +110,7 @@ class CreateLaporanHasilSertMakerTable extends Migration
         });
 
         Schema::table('laporan_hasil_sert', function(Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::table('laporan_hasil_sert', function(Blueprint $table) {

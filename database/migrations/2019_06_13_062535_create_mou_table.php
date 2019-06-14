@@ -15,7 +15,7 @@ class CreateMouTable extends Migration
     {
         Schema::create('mou', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('produk_id')->nullable();
             $table->unsignedBigInteger('mou_maker_id')->nullable();
             $table->string('mou');
             $table->string('mou_signed')->nullable();

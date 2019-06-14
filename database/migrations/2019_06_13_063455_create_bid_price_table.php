@@ -15,7 +15,7 @@ class CreateBidPriceTable extends Migration
     {
         Schema::create('bid_price', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('produk_id')->nullable();
             $table->unsignedBigInteger('bid_price_maker_id')->nullable();
             $table->string('bid_price');
             $table->string('status')->nullable();

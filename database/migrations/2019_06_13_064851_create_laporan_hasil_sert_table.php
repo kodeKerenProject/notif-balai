@@ -15,7 +15,7 @@ class CreateLaporanHasilSertTable extends Migration
     {
         Schema::create('laporan_hasil_sert', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('produk_id')->nullable();
             $table->string('shu');
             $table->string('bapc');
             $table->string('closed_ncr');
