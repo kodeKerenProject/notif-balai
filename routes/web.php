@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sa', function () {
-    return view('applySA');
-});
-
+Route::get('/sa', 'SAController@sa');
 Route::post('/sa', 'SAController@applySA');
+Route::get('/verifySA', 'SAController@verifySA');
+Route::post('/verifySA', 'SAController@verSA');
+
+Route::post('/mou', 'MOUController@create');
