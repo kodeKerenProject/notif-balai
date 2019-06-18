@@ -38,7 +38,7 @@
 		</div>
 		@endif
 		<br>
-		@if((!is_null($dok) && $dok->sni != 1) && (!is_null($dok) && $dok->sni != 3))
+		@if(((!is_null($dok) && $dok->sni != 1) && (!is_null($dok) && $dok->sni != 3)) || is_null($dok))
 		<button id="submit" type="submit">Submit</button> | <button type="reset">Reset</button>
 		@endif
 	</form>

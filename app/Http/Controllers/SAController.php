@@ -13,6 +13,7 @@ class SAController extends Controller
 	}
 
     public function applySA(Request $request) {
+
 		$file = $request->file('dok');
 		$fn = [];
 		$fieldName = [];
@@ -46,6 +47,7 @@ class SAController extends Controller
     }
 
     public function verSA(Request $request) {
+        dd($request->all());
 		$dok = Persyaratan_dalam_negeri::first();
 		$jml = count($request->dok);
 		foreach ($request->fileName as $key => $value) {
