@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Persyaratan_dalam_negeri;
-
+use App\Notifications\ApplySaNotif;
+use Notification;
 class SAController extends Controller
 {
 	public function sa() {
@@ -47,9 +48,9 @@ class SAController extends Controller
     }
 
     public function verSA(Request $request) {
-        dd($request->all());
 		$dok = Persyaratan_dalam_negeri::first();
 		$jml = count($request->dok);
+        $id_usah = $dok->produk_relation()->first()->user_r()->first();
 		foreach ($request->fileName as $key => $value) {
 			if ($request->dok[$key] == 'null' && !is_null($dok->$value)) {
 				unlink(public_path().'/dok/sa/'.$dok->$value);
@@ -65,9 +66,16 @@ class SAController extends Controller
     	}
     	if ($jml == 0) {
     		$dok->sni = 1;
+            
+            Notification::send($id_usah,new ApplySaNotif);
     	}
     	$dok->save();
 
     	return redirect()->back();
+    }
+
+    public function push(){
+        
+        return redirect()->back();
     }
 }

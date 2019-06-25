@@ -33,12 +33,16 @@ class CreateLaporanHasilSertMakerTable extends Migration
             $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
         });
 
-        Schema::table('notif_log', function(Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+        Schema::table('persyaratan_dok_luar_negeri', function(Blueprint $table) {
+            $table->foreign('dok_importir_id')->references('id')->on('dok_importir')->onDelete('cascade')->onUpdate('cascade');
         });
 
-        Schema::table('dok_importir', function(Blueprint $table) {
-            $table->foreign('persyaratan_dok_luar_negeri_id')->references('id')->on('persyaratan_dok_luar_negeri')->onDelete('cascade')->onUpdate('cascade');
+        Schema::table('persyaratan_dok_luar_negeri', function(Blueprint $table) {
+            $table->foreign('dok_manufaktur_id')->references('id')->on('dok_manufaktur')->onDelete('cascade')->onUpdate('cascade');
+        });
+
+        Schema::table('notif_log', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::table('laporan_audit', function(Blueprint $table) {

@@ -15,7 +15,6 @@ class CreateDokImportirTable extends Migration
     {
         Schema::create('dok_importir', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('persyaratan_dok_luar_negeri_id')->nullable();
             $table->string('surat_permohonan_importer')->nullable();
             $table->string('daftar_isian_dan_kuesioner_importer')->nullable();
             $table->string('copy_iui')->nullable();

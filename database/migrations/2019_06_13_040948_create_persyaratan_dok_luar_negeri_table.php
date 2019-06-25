@@ -17,6 +17,8 @@ class CreatePersyaratanDokLuarNegeriTable
         Schema::create('persyaratan_dok_luar_negeri', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('produk_id')->nullable();
+            $table->unsignedBigInteger('dok_importir_id')->nullable();
+            $table->unsignedBigInteger('dok_manufaktur_id')->nullable();
             $table->string('sni')->nullable();
             $table->timestamps();
         });

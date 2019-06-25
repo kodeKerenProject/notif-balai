@@ -21,3 +21,6 @@ Route::get('/verifySA', 'SAController@verifySA');
 Route::post('/verifySA', 'SAController@verSA');
 
 Route::post('/mou', 'MOUController@create');
+Auth::routes();
+Route::post('/push','PushController@store');
+Route::get('/home', 'HomeController@index')->name('home');
