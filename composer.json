@@ -13,7 +13,8 @@
         "laravel-notification-channels/webpush": "^3.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "spatie/laravel-fractal": "^5.5"
+        "spatie/laravel-fractal": "^5.5",
+        "spatie/laravel-permission": "^2.37"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

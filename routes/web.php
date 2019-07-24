@@ -15,10 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sa', 'SAController@sa');
-Route::post('/sa', 'SAController@applySA');
-Route::get('/verifySA', 'SAController@verifySA');
-Route::post('/verifySA', 'SAController@verSA');
+Route::group(['middleware' => 'roles','roles'=>['admin','test']], function () {
+	Route::get('/sa', 'SAController@sa');
+	Route::post('/verifySA', 'SAController@verSA');
+	Route::post('/sa', 'SAController@applySA');
+});
+
+Route::group(['middleware'=>'roles','roles'=>'normal'],function (){
+	Route::get('/verifySA', 'SAController@verifySA');
+});
 
 Route::post('/mou', 'MOUController@create');
 Auth::routes();
