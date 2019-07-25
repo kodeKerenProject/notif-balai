@@ -56,18 +56,12 @@ class CreateReviewTinjauanPpTable extends Migration
 
         Schema::table('laporan_audit', function(Blueprint $table) {
             $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
-        });
-
-        Schema::table('laporan_audit', function(Blueprint $table) {
             $table->foreign('auditor')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
 
 
         Schema::table('audit_sampling_plan', function(Blueprint $table) {
             $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade')->onUpdate('cascade');
-        });
-
-        Schema::table('audit_sampling_plan', function(Blueprint $table) {
             $table->foreign('doc_maker')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
 

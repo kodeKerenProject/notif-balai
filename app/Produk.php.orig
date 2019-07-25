@@ -1,0 +1,19 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Produk extends Model
+{
+<<<<<<< HEAD
+    protected $table = 'produk';
+=======
+    protected $table = "produk";
+
+    public function user_r()
+    {
+    	return $this->belongsTo('App\User','id');
+    }
+>>>>>>> 2c1b3c51fe8297bbf509e28d21fa5d0a51d7c114
+}

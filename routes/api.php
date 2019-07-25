@@ -25,3 +25,6 @@ Route::post('details', 'UsersApiController@details')->middleware('verified');
 
 Route::get('email/verify/{id}', 'VerificationApiController@verify')->name('verificationapi.verify');
 Route::get('email/resend', 'VerificationApiController@resend')->name('verificationapi.resend');
+
+Route::get('/applySa','APIController@getSA');
+Route::post('/applySa','APIController@verifSA');

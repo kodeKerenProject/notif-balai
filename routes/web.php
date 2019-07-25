@@ -88,6 +88,12 @@ Route::group(['middleware'=>['auth', 'verified']], function() {
 		Route::post('/jadwalSert', 'SertController@jadwalSert');
 });
 
+/*Route::group(['middleware' => 'roles','roles'=>['admin','test']], function () {
+	Route::get('/sa', 'SAController@sa');
+	Route::post('/verifySA', 'SAController@verSA');
+	Route::post('/sa', 'SAController@applySA');
+});*/
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -11,6 +11,8 @@ use App\Mou;
 use App\User;
 use App\Role;
 use App\Produk;
+use App\Notifications\ApplySaNotif;
+use Notification;
 
 class SAController extends Controller
 {
@@ -27,6 +29,7 @@ class SAController extends Controller
 	}
 
     public function applySA(Request $request, Persyaratan_dalam_negeri $model) {
+
 		$file = $request->file('dok');
 		$fn = [];
 		$fieldName = [];
@@ -45,12 +48,17 @@ class SAController extends Controller
 
     	$dok = $model->first();
         if (is_null($dok)) {
+    		foreach ($fieldName as $key => $value) {
             $dok = new $model;
         }
+    		$dok->sni = 3;
+    	} else {
+	    	$dok = new Persyaratan_dalam_negeri;
     	foreach ($fieldName as $key => $value) {
     		$dok->$value = $fn[$key];
     	}
 		$dok->sni = 3;
+    	}
     	$dok->save();
 
     	return redirect()->back();

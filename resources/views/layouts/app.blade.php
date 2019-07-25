@@ -91,5 +91,9 @@
             </div>
         </main>
     </div>
+    
+    @auth
+    <script src="{{ asset('js/enable-push.js') }}" defer></script>
+    @endauth
 </body>
 </html>
