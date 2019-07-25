@@ -13,11 +13,11 @@ class RoleSeeder extends Seeder
     public function run()
     {
     	$role = new Role;
-    	$role->role = 'client';
+    	$role->name = 'client';
     	$role->save();
 
     	$role = new Role;
-    	$role->role = 'pemasaran';
+    	$role->name = 'pemasaran';
     	$role->save();
     }
 }

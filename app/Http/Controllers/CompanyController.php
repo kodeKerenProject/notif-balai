@@ -12,7 +12,7 @@ use App\Mou;
 class CompanyController extends Controller
 {
     public function list() {
-        $roleId = Role::where('role', 'client')->first()->id;
+        $roleId = Role::where('name', 'client')->first()->id;
         $client = \DB::table('users')->where('role_id', $roleId)->join('role', 'role.id', '=', 'users.role_id')->select('users.id', 'users.nama_perusahaan', 'users.pimpinan_perusahaan')->get();
         return view('company.company_list', compact('client'));
     }

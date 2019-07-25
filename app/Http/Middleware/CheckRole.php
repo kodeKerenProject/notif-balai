@@ -16,7 +16,7 @@ class CheckRole
     public function handle($request, Closure $next)
     {
         if ($request->user() == null) {
-            return response("Ga Boleh",401);
+            return abort(401,"Bukan Hak Anda");
         }
 
         $actions = $request->route()->getAction();
@@ -28,6 +28,6 @@ class CheckRole
 
         //dd($request->user()->hasAnyRoles($roles));
         // return $next($request);
-        return response("Ga Boleh2",401);
+        return abort(401,"Bukan Hak Anda");
     }
 }

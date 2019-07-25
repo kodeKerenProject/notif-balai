@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 	
-Route::group(['middleware'=>['auth', 'verified']], function() {
+Route::group(['middleware'=>'roles','roles'=>'client'], function() {
 
-	Route::group(['middleware'=>['checkClient']], function() {	
+	//Route::group(['middleware'=>['checkClient']], function() {	
 		// produk
 		Route::get('/produkClient', 'ProdukController@index');
 		Route::post('/produkClient/create', 'ProdukController@create');
@@ -27,8 +27,9 @@ Route::group(['middleware'=>['auth', 'verified']], function() {
 		Route::get('sa', 'SAController@sa');
 		Route::post('/sa', 'SAController@applySA');
 		Route::post('/saLuar', 'SAController@applySAluar');
-	});
-	Route::group(['middleware'=>['checkPemasaran']], function() {
+	//});
+});
+	Route::group(['middleware'=>'roles','roles'=>'pemasaran'], function() {
 		// verify SA
 		Route::get('/company', 'CompanyController@list');
 		Route::get('/company/{id}', 'CompanyController@single');
@@ -86,7 +87,7 @@ Route::group(['middleware'=>['auth', 'verified']], function() {
 		Route::post('/req_sert', 'SertController@req_sert');
 		// arrange schedule pengiriman/pengambilan
 		Route::post('/jadwalSert', 'SertController@jadwalSert');
-});
+
 
 /*Route::group(['middleware' => 'roles','roles'=>['admin','test']], function () {
 	Route::get('/sa', 'SAController@sa');
