@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 18, 2019 at 11:46 AM
+-- Generation Time: Sep 18, 2019 at 01:50 PM
 -- Server version: 5.7.26-0ubuntu0.18.04.1
 -- PHP Version: 7.2.22-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -338,7 +338,7 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id`, `user_id`, `produk`, `sert_id`, `draft_sert`, `status_sert_jadi`, `request_sert`, `tgl_request_sert`, `resi_pengiriman`, `created_at`, `updated_at`) VALUES
-(8, 2, 'produk22', NULL, NULL, NULL, NULL, NULL, NULL, '2019-09-17 21:43:17', '2019-09-17 21:43:17');
+(9, 2, 'produk22', NULL, NULL, NULL, NULL, NULL, NULL, '2019-09-17 23:03:21', '2019-09-17 23:03:21');
 
 -- --------------------------------------------------------
 
@@ -807,7 +807,7 @@ ALTER TABLE `persyaratan_dok_luar_negeri`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `review_dok_importir`
