@@ -16,7 +16,7 @@ class CheckRole
     public function handle($request, Closure $next)
     {
         if ($request->user() == null) {
-            return abort(401,"Bukan Hak Anda");
+            return redirect('login');
         }
 
         $actions = $request->route()->getAction();

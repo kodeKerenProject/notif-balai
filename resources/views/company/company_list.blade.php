@@ -1,6 +1,8 @@
-@extends('layouts/app')
+@extends('home')
 
-@section('content')
+@section('card-header', 'List Perusahaan')
+
+@section('second-content')
 	<b><i>List Perusahaan yang mengajukan sertifikasi produk</i></b><br>
 	<table border="1">
 		<tr>

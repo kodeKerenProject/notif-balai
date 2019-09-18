@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Persyaratan_dalam_negeri;
+use App\Persyaratan_luar_negeri;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -21,8 +24,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+    public function index() {
+        $user = new User;
+        return redirect($user->home());
     }
 }

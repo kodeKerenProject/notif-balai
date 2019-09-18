@@ -13,22 +13,22 @@ class CreateReviewDokManufakturTable extends Migration
      */
     public function up()
     {
-        Schema::create('review_dok_manufaktur', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('surat_permohonan_dari_manufaktur')->nullable();
-            $table->string('daftar_isian_dan_kuesioner_manufaktur')->nullable();
-            $table->string('izin_usaha_manufaktur')->nullable();
-            $table->string('sert_iso_9001')->nullable();
-            $table->string('laporan_pengawasan_iso_9001_terakhir')->nullable();
-            $table->string('struktur_organisasi')->nullable();
-            $table->string('diagram_alir_produksi')->nullable();
-            $table->string('panduan_mutu')->nullable();
-            $table->string('daftar_induk_dok')->nullable();
-            $table->string('surat_penunjukkan_wakil_manajemen')->nullable();
-            $table->string('tata_letak_pabrik')->nullable();
-            $table->string('peta_rute_pabrik_dari_bandara_terdekat')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('review_dok_manufaktur', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->string('surat_permohonan_dari_manufaktur')->nullable();
+        //     $table->string('daftar_isian_dan_kuesioner_manufaktur')->nullable();
+        //     $table->string('izin_usaha_manufaktur')->nullable();
+        //     $table->string('sert_iso_9001')->nullable();
+        //     $table->string('laporan_pengawasan_iso_9001_terakhir')->nullable();
+        //     $table->string('struktur_organisasi')->nullable();
+        //     $table->string('diagram_alir_produksi')->nullable();
+        //     $table->string('panduan_mutu')->nullable();
+        //     $table->string('daftar_induk_dok')->nullable();
+        //     $table->string('surat_penunjukkan_wakil_manajemen')->nullable();
+        //     $table->string('tata_letak_pabrik')->nullable();
+        //     $table->string('peta_rute_pabrik_dari_bandara_terdekat')->nullable();
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -38,7 +38,7 @@ class CreateReviewDokManufakturTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('review_dok_manufaktur');
+        // Schema::disableForeignKeyConstraints();
+        // Schema::dropIfExists('review_dok_manufaktur');
     }
 }

@@ -15,4 +15,8 @@ class Persyaratan_luar_negeri extends Model
     public function dok_manufaktur() {
     	return $this->hasOne('App\DokManufaktur', 'id', 'dok_manufaktur_id');
     }
+
+    public function produk() {
+    	return $this->hasOne('App\Produk', 'id', 'produk_id');
+    }
 }

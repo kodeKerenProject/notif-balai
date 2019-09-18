@@ -17,8 +17,9 @@ class CreateLaporanAuditTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('produk_id')->nullable();
             $table->unsignedBigInteger('auditor')->nullable();
-            $table->unsignedBigInteger('dok_importir_id')->nullable();
-            $table->unsignedBigInteger('dok_manufaktur_id')->nullable();
+            $table->unsignedBigInteger('persyaratan_dok_luar_negeri_id')->nullable();
+            // $table->unsignedBigInteger('dok_importir_id')->nullable();
+            // $table->unsignedBigInteger('dok_manufaktur_id')->nullable();
             $table->unsignedBigInteger('tinjauan_pp_id')->nullable();
             $table->unsignedBigInteger('jadwal_audit_id')->nullable();
             $table->timestamps();

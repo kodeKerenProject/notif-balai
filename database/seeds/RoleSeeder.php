@@ -12,12 +12,11 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-    	$role = new Role;
-    	$role->name = 'client';
-    	$role->save();
-
-    	$role = new Role;
-    	$role->name = 'pemasaran';
-    	$role->save();
+        $roles = ['client', 'pemasaran', 'kerjasama', 'kabidpjt', 'keuangan', 'sertifikasi', 'auditor', 'kabidpaskal'];
+    	foreach ($roles as $key => $value) {
+            $role = new Role;
+        	$role->role = $value;
+        	$role->save();
+        }
     }
 }

@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +18,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+        .font-tahap {
+            font-size: 13px;
+            padding-bottom: 5px;
+        }
+        .font-tahap-icon {
+            font-size: 11px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -25,6 +34,7 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
+                     {{-- - <i>Validasi semua form, validasi input number</i> --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -73,27 +83,25 @@
         </nav>
 
         <main class="py-4">
-            @if(\Auth::user())
-                @section('menu')
-                    @if(!is_null(\Auth::user()->negeri))
-                        <ul>
-                            <li><a href="{{ url('/produkClient') }}">Produk</a></li>
-                        </ul>
-                    @elseif(\Auth::user()->role()->first()->role == 'pemasaran')
-                        <ul>
-                            <li><a href="{{ url('/company') }}">List Perusahaan</a></li>
-                        </ul>
+            @if(\Auth::user() && \Auth::user()->role()->first()->role != 'client')
+                <ul>
+                    <li><a href="{{ url('/company') }}">List Perusahaan</a></li>
+                    @if(isset($idProduk))
+                    <li><a href="{{ url('/company/'.$user_id) }}">List Produk</a></li>
                     @endif
-                @show
+                </ul>
             @endif
-            <div class="container">
-                @yield('content')
+            <div class="container{{ \Auth::user() && \Auth::user()->role()->first()->role != 'client' ? 'fluid' : '' }}">
+                <div class="{{ \Auth::user() && \Auth::user()->role()->first()->role != 'client' ? 'pr-4 pl-4' : '' }}">
+                    @yield('content')
+                </div>
             </div>
         </main>
     </div>
     
     @auth
-    <script src="{{ asset('js/enable-push.js') }}" defer></script>
+    <script src="{{ asset('js/enable-push.js') }}"></script>
     @endauth
+    <script type="text/javascript" src="{{ asset('js/Jsscript.js') }}"></script>
 </body>
 </html>
