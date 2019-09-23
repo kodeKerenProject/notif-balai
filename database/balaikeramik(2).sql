@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 18, 2019 at 01:50 PM
+-- Generation Time: Sep 23, 2019 at 04:28 PM
 -- Server version: 5.7.26-0ubuntu0.18.04.1
 -- PHP Version: 7.2.22-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -37,6 +37,36 @@ CREATE TABLE `audit_sampling_plan` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bahan_hasil`
+--
+
+CREATE TABLE `bahan_hasil` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `produk_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `form_2.1_jenis_bahan` varchar(255) DEFAULT NULL,
+  `form_2.1_spek` varchar(255) DEFAULT NULL,
+  `form_2.1_nama_pemasok` varchar(255) DEFAULT NULL,
+  `form_2.2` varchar(255) DEFAULT NULL,
+  `form_3.1` varchar(255) DEFAULT NULL,
+  `form_3.2` varchar(255) DEFAULT NULL,
+  `form_4.1` varchar(255) DEFAULT NULL,
+  `form_4.2_nama_alat` varchar(255) DEFAULT NULL,
+  `form_4.2_nama_pembuat` varchar(255) DEFAULT NULL,
+  `form_4.2_acuan` varchar(255) DEFAULT NULL,
+  `form_4.2_sistem` varchar(255) DEFAULT NULL,
+  `form_4.2_sert` varchar(255) DEFAULT NULL,
+  `form_5.1.1` varchar(255) DEFAULT NULL,
+  `form_5.1.2` varchar(255) DEFAULT NULL,
+  `form_5.2.1` varchar(255) DEFAULT NULL,
+  `form_5.2.2` varchar(255) DEFAULT NULL,
+  `form_5.2.3` varchar(255) DEFAULT NULL,
+  `form_5.2.4` varchar(255) DEFAULT NULL,
+  `form_5.2.4_isi` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -116,6 +146,36 @@ CREATE TABLE `dok_manufaktur` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `info_tambahan`
+--
+
+CREATE TABLE `info_tambahan` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `produk_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `lengkap` int(11) DEFAULT NULL,
+  `kuis1_opsi` tinyint(1) DEFAULT NULL,
+  `kuis1_isi` varchar(255) DEFAULT NULL,
+  `kuis2_opsi` tinyint(1) DEFAULT NULL,
+  `kuis2_isi` varchar(255) DEFAULT NULL,
+  `kuis3_opsi` tinyint(1) DEFAULT NULL,
+  `kuis3_isi` varchar(255) DEFAULT NULL,
+  `kuis4_opsi` tinyint(1) DEFAULT NULL,
+  `kuis4_isi` varchar(255) DEFAULT NULL,
+  `kuis5_opsi` tinyint(1) DEFAULT NULL,
+  `kuis6` date DEFAULT NULL,
+  `pesan` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `info_tambahan`
+--
+
+INSERT INTO `info_tambahan` (`id`, `produk_id`, `lengkap`, `kuis1_opsi`, `kuis1_isi`, `kuis2_opsi`, `kuis2_isi`, `kuis3_opsi`, `kuis3_isi`, `kuis4_opsi`, `kuis4_isi`, `kuis5_opsi`, `kuis6`, `pesan`) VALUES
+(1, 10, 1, 1, '[\"asd\",\"sada\"]', 1, '[\"asdasd\"]', 1, '[\"asdasd\",\"asdasd\"]', 0, '[\"ya\"]', 1, '2019-09-25', '[[],\"alsdkjllkj\\r\\nalskdjlaskjd\"]');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `invoice`
 --
 
@@ -142,6 +202,39 @@ CREATE TABLE `jadwal_audit` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kuesioner`
+--
+
+CREATE TABLE `kuesioner` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `produk_id` bigint(20) UNSIGNED NOT NULL,
+  `kuis1` varchar(255) DEFAULT NULL,
+  `kuis2` varchar(255) DEFAULT NULL,
+  `kuis3` varchar(255) DEFAULT NULL,
+  `kuis4` date DEFAULT NULL,
+  `kuis5` varchar(255) NOT NULL,
+  `kuis_1.1.1` varchar(255) DEFAULT NULL,
+  `kuis_1.1.2` varchar(255) DEFAULT NULL,
+  `kuis_1.1.2_isi` varchar(255) DEFAULT NULL,
+  `kuis_1.1.3` varchar(255) DEFAULT NULL,
+  `kuis_1.2.1` varchar(255) DEFAULT NULL,
+  `kuis_1.2.2` varchar(255) DEFAULT NULL,
+  `kuis_1.2.3` varchar(255) DEFAULT NULL,
+  `kuis_1.2.3_isi` varchar(255) DEFAULT NULL,
+  `kuis_1.2.4` varchar(255) DEFAULT NULL,
+  `kuis_1.2.5` varchar(255) DEFAULT NULL,
+  `kuis_1.2.6` varchar(255) DEFAULT NULL,
+  `kuis_1.2.6.1` varchar(255) DEFAULT NULL,
+  `kuis_1.2.6.2` varchar(255) DEFAULT NULL,
+  `kuis_1.2.6.3` varchar(255) DEFAULT NULL,
+  `kuis_1.2.8` varchar(255) DEFAULT NULL,
+  `kuis_1.2.8_isi` varchar(255) DEFAULT NULL,
+  `kuis_1.2.9` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -297,6 +390,13 @@ CREATE TABLE `persyaratan_dok_dalam_negeri` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `persyaratan_dok_dalam_negeri`
+--
+
+INSERT INTO `persyaratan_dok_dalam_negeri` (`id`, `produk_id`, `sni`, `surat_permohonan_sertifikat_sni`, `daftar_isian_kuesioner`, `copy_iui`, `copy_akte_notaris_perusahaan`, `copy_tdp`, `copy_npwp`, `copy_sert_patent_merek`, `copy_sert_iso_9001`, `laporan_audit_sistem_mutu_terakhir`, `panduan_mutu`, `daftar_induk_dok`, `struktur_organisasi`, `diagram_alir_proses_produksi`, `surat_pertunjukkan_wakil_manajemen`, `ilustrasi_pembubuhan_tanda_sni`, `tabel_daftar_tipe_produk`, `gambar_dan_spesifikasi_produk`, `tata_letak_pabrik`, `peta_rute_pabrik_dari_bandara_terdekat`, `created_at`, `updated_at`) VALUES
+(1, 10, '1', NULL, NULL, '5d8804496f84c-20190922233121.pdf', '5d88044984448-20190922233121.pdf', '5d8869681b334-20190923064248.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-09-22 16:31:21', '2019-09-23 02:03:25');
+
 -- --------------------------------------------------------
 
 --
@@ -338,7 +438,8 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id`, `user_id`, `produk`, `sert_id`, `draft_sert`, `status_sert_jadi`, `request_sert`, `tgl_request_sert`, `resi_pengiriman`, `created_at`, `updated_at`) VALUES
-(9, 2, 'produk22', NULL, NULL, NULL, NULL, NULL, NULL, '2019-09-17 23:03:21', '2019-09-17 23:03:21');
+(9, 2, 'produk22', NULL, NULL, NULL, NULL, NULL, NULL, '2019-09-17 23:03:21', '2019-09-17 23:03:21'),
+(10, 1, 'produk11', NULL, NULL, NULL, NULL, NULL, NULL, '2019-09-19 23:32:18', '2019-09-19 23:32:18');
 
 -- --------------------------------------------------------
 
@@ -475,6 +576,13 @@ CREATE TABLE `tahap_sert` (
   `jadwalSert` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tahap_sert`
+--
+
+INSERT INTO `tahap_sert` (`id`, `produk_id`, `apply_sa`, `mou`, `sign_mou`, `bid_price`, `form_pembayaran`, `invoice`, `bukti_bayar`, `jadwal_audit`, `dokSert`, `sampling_plan`, `lapSert`, `draftSert`, `cetakSert`, `jadwalSert`) VALUES
+(1, 10, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -562,6 +670,13 @@ ALTER TABLE `audit_sampling_plan`
   ADD KEY `audit_sampling_plan_doc_maker_foreign` (`doc_maker`);
 
 --
+-- Indexes for table `bahan_hasil`
+--
+ALTER TABLE `bahan_hasil`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `produk_id` (`produk_id`);
+
+--
 -- Indexes for table `bid_price`
 --
 ALTER TABLE `bid_price`
@@ -585,6 +700,13 @@ ALTER TABLE `dok_manufaktur`
   ADD KEY `dok_manufaktur_review_dok_manufaktur_id_foreign` (`review_dok_manufaktur_id`);
 
 --
+-- Indexes for table `info_tambahan`
+--
+ALTER TABLE `info_tambahan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `produk_id` (`produk_id`);
+
+--
 -- Indexes for table `invoice`
 --
 ALTER TABLE `invoice`
@@ -597,6 +719,13 @@ ALTER TABLE `invoice`
 ALTER TABLE `jadwal_audit`
   ADD PRIMARY KEY (`id`),
   ADD KEY `jadwal_audit_user_id_foreign` (`doc_maker`);
+
+--
+-- Indexes for table `kuesioner`
+--
+ALTER TABLE `kuesioner`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `produk_id` (`produk_id`);
 
 --
 -- Indexes for table `laporan_audit`
@@ -729,49 +858,67 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `audit_sampling_plan`
 --
 ALTER TABLE `audit_sampling_plan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bahan_hasil`
+--
+ALTER TABLE `bahan_hasil`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `bid_price`
 --
 ALTER TABLE `bid_price`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `dok_importir`
 --
 ALTER TABLE `dok_importir`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `dok_manufaktur`
 --
 ALTER TABLE `dok_manufaktur`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `info_tambahan`
+--
+ALTER TABLE `info_tambahan`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jadwal_audit`
 --
 ALTER TABLE `jadwal_audit`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `kuesioner`
+--
+ALTER TABLE `kuesioner`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `laporan_audit`
 --
 ALTER TABLE `laporan_audit`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `laporan_hasil_sert`
 --
 ALTER TABLE `laporan_hasil_sert`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -783,7 +930,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `mou`
 --
 ALTER TABLE `mou`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notif_log`
@@ -795,7 +942,7 @@ ALTER TABLE `notif_log`
 -- AUTO_INCREMENT for table `persyaratan_dok_dalam_negeri`
 --
 ALTER TABLE `persyaratan_dok_dalam_negeri`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `persyaratan_dok_luar_negeri`
@@ -807,25 +954,25 @@ ALTER TABLE `persyaratan_dok_luar_negeri`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `review_dok_importir`
 --
 ALTER TABLE `review_dok_importir`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `review_dok_manufaktur`
 --
 ALTER TABLE `review_dok_manufaktur`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `review_tinjauan_pp`
 --
 ALTER TABLE `review_tinjauan_pp`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -843,13 +990,13 @@ ALTER TABLE `sert`
 -- AUTO_INCREMENT for table `tahap_sert`
 --
 ALTER TABLE `tahap_sert`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tinjauan_pp`
 --
 ALTER TABLE `tinjauan_pp`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -867,6 +1014,12 @@ ALTER TABLE `users`
 ALTER TABLE `audit_sampling_plan`
   ADD CONSTRAINT `audit_sampling_plan_doc_maker_foreign` FOREIGN KEY (`doc_maker`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `audit_sampling_plan_produk_id_foreign` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bahan_hasil`
+--
+ALTER TABLE `bahan_hasil`
+  ADD CONSTRAINT `bahan_hasil_produk_id_foreign` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `bid_price`
@@ -889,6 +1042,12 @@ ALTER TABLE `dok_manufaktur`
   ADD CONSTRAINT `dok_manufaktur_review_dok_manufaktur_id_foreign` FOREIGN KEY (`review_dok_manufaktur_id`) REFERENCES `review_dok_manufaktur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `info_tambahan`
+--
+ALTER TABLE `info_tambahan`
+  ADD CONSTRAINT `info_tambahan_produk_id_foreign` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `invoice`
 --
 ALTER TABLE `invoice`
@@ -899,6 +1058,12 @@ ALTER TABLE `invoice`
 --
 ALTER TABLE `jadwal_audit`
   ADD CONSTRAINT `jadwal_audit_user_id_foreign` FOREIGN KEY (`doc_maker`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `kuesioner`
+--
+ALTER TABLE `kuesioner`
+  ADD CONSTRAINT `kuesioner_produk_id_foreign` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `laporan_audit`

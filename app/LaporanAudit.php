@@ -53,6 +53,16 @@ class LaporanAudit extends Model
         return $getTable;
     }
 
+    public function getTable($table, $key, $saLuar) {
+        if (!is_null($saLuar) && $key == 0) {
+            $getTable = !is_null($la->dokImportir()) ? $la->dokImportir() : $table;
+        } elseif (!is_null($saLuar) && $key == 1) {
+            $getTable = !is_null($la->dokManufaktur()) ? $la->dokManufaktur() : $table;
+        }
+
+        return $getTable;
+    }
+
     public function dokAudit($request) {
         $arr = [
             [new DokImportir, 'dokImportir'],

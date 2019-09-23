@@ -12,6 +12,8 @@ use App\Mou;
 use App\DokImportir;
 use App\DokManufaktur;
 use App\TahapSert;
+use App\InfoTambahan;
+use Illuminate\Support\Arr;
 
 class CompanyController extends Controller
 {
@@ -50,10 +52,32 @@ class CompanyController extends Controller
     	$dokImportir = !is_null($dok) && $user->negeri == '2' ? $dok->dok_importir()->first() : null;
         $dokManufaktur = !is_null($dok) && $user->negeri == '2' ? $dok->dok_manufaktur()->first() : null;
         $dokDalamNegeri = !is_null($dok) && $user->negeri == '2' ? $dok->dok_importir()->first()->more_doc()->first() : null;
-    	return view('applySA.verifySA', compact('dok', 'user', 'dokImportir', 'dokManufaktur', 'dokDalamNegeri', 'idProduk', 'produk', 'url'), ['user_id' => $id]);
+        $infoT = InfoTambahan::where('produk_id', $idProduk)->first();
+        $infoIsi = function($data) {
+            return json_decode($data);
+        };
+        $opsi = !is_null($infoT) && !is_null($infoT->pesan) ? json_decode($infoT->pesan)[0] : null;
+        $pesan = !is_null($infoT) && !is_null($infoT->pesan) ? json_decode($infoT->pesan)[1] : null;
+        $cekOpsi = function($op, $opsi) {
+            if (!is_null($opsi)) {
+                foreach ($opsi as $key => $value) {
+                    if ($value == $op) {
+                        return 1;
+                    }
+                }
+            }
+            return 0;
+        };
+    	return view('applySA.verifySA', compact('dok', 'user', 'dokImportir', 'dokManufaktur', 'dokDalamNegeri', 'idProduk', 'produk', 'infoT', 'infoIsi', 'opsi', 'pesan', 'cekOpsi'), ['user_id' => $id]);
     }
 
     public function verSA(Request $request, $id) {
+        $request->validate([
+            'pesan' => 'string'
+        ]);
+        $model = new Persyaratan_dalam_negeri;
+        $infoT = Arr::except($request->all(), ['_token', 'fileName', 'dok', 'pesan']);
+        $infoDB = InfoTambahan::where('produk_id', $id)->first();
         $dok = Persyaratan_dalam_negeri::where('produk_id', $id)->first();
 		$jml = count($request->dok);
 		foreach ($request->fileName as $key => $value) {
@@ -69,7 +93,8 @@ class CompanyController extends Controller
     		}
     		$jml-=1;
     	}
-    	if ($jml == 0) {
+        $infoTStatus = $model->verifyKuis($request->all(), $infoDB, $infoT);
+    	if ($jml == 0 && $infoTStatus == 1) {
     		$dok->sni = 1;
             $tahap = TahapSert::where('produk_id', $id)->first();
             $tahap->apply_sa = 1;
@@ -77,7 +102,7 @@ class CompanyController extends Controller
     	}
     	$dok->save();
 
-    	return redirect()->back();
+    	return redirect()->back()->with('successMsg', 'Verifikasi berhasil dilakukan');
     }
 
     public function verSALuar(Request $request, $id) {

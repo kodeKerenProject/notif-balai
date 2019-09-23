@@ -29,7 +29,7 @@
         @endforeach
         </ul>
     @endif
-	@if((!is_null($mou) && $mou->status == 2 && !is_null($model) && is_null($model->bid_price)) || is_null($model))
+	@if((!is_null($mou) && $mou->status == 2 && !is_null($model) && is_null($model->bid_price)) || (is_null($model) && !is_null($mou)))
 	<center><p class="alert alert-success">Client telah selesai upload MOU yang sudah ditandatangani</p></center>
 	Form pembuatan dokumen penawaran harga.
 	<form method="POST" action="{{ url('/bidPrice_create/'.$idProduk) }}" enctype="multipart/form-data">
@@ -51,7 +51,7 @@
 	@elseif(!is_null($model) && $model->status == 3)
 	<center><p class="alert alert-primary">Submit Dokumen Penawaran Harga telah dilakukan</p></center>
 	@else
-	<p>Form pembuatan dokumen penawaran harga masih dikunci</p>
+	<center><p class="alert alert-primary">Form pembuatan dokumen penawaran harga masih dikunci</p></center>
 	@endif
 
 	<br>

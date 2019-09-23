@@ -18,7 +18,7 @@ class CreatePersyaratanDokDalamNegeriTable extends Migration
             $table->unsignedBigInteger('produk_id')->nullable();
             $table->string('sni')->nullable();
             $table->string('surat_permohonan_sertifikat_sni')->nullable();
-            $table->string('daftar_isian_kuesioner')->nullable();
+            // $table->string('daftar_isian_kuesioner')->nullable();
             $table->string('copy_iui')->nullable();
             $table->string('copy_akte_notaris_perusahaan')->nullable();
             $table->string('copy_tdp')->nullable();

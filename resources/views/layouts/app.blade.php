@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
     <style type="text/css">
         .font-tahap {
             font-size: 13px;
@@ -25,6 +27,15 @@
         }
         .font-tahap-icon {
             font-size: 11px;
+        }
+        .modal-lg {
+            max-width: 90% !important;
+        }
+        .table td, .table th {
+            padding: 5px;
+        }
+        .hid {
+            display: none;
         }
     </style>
 </head>
@@ -91,7 +102,7 @@
                     @endif
                 </ul>
             @endif
-            <div class="container{{ \Auth::user() && \Auth::user()->role()->first()->role != 'client' ? 'fluid' : '' }}">
+            <div class="container-fluid">
                 <div class="{{ \Auth::user() && \Auth::user()->role()->first()->role != 'client' ? 'pr-4 pl-4' : '' }}">
                     @yield('content')
                 </div>
