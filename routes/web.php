@@ -146,3 +146,24 @@ Route::group(['middleware'=>'roles','roles'=>'subag_umum'], function() {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index');
+
+// Route::get('/push','PushController@push')->name('push');
+// //store a push subscriber.
+// Route::post('/push','PushController@store');
+
+Route::post('notifications', 'NotificationController@store');
+Route::get('notifications', 'NotificationController@index');
+Route::patch('notifications/{id}/read', 'NotificationController@markAsRead');
+Route::post('notifications/mark-all-read', 'NotificationController@markAllRead');
+Route::post('notifications/{id}/dismiss', 'NotificationController@dismiss');
+
+// Push Subscriptions
+Route::post('subscriptions', 'PushController@update');
+Route::post('subscriptions/delete', 'PushController@destroy');
+
+Route::get('manifest.json', function () {
+    return [
+        'name' => config('app.name'),
+        'gcm_sender_id' => config('webpush.gcm.sender_id')
+    ];
+});

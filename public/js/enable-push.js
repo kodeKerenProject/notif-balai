@@ -1,104 +1,42 @@
-initSW();
-
-function initSW() {
-    if (!"serviceWorker" in navigator) {
-        //service worker isn't supported
-        return;
+const check = () => {
+  if (!('serviceWorker' in navigator)) {
+    throw new Error('No Service Worker support!')
+  }
+  if (!('PushManager' in window)) {
+    throw new Error('No Push API Support!')
+  }
+}
+// I added a function that can be used to register a service worker.
+const registerServiceWorker = async () => {
+    const swRegistration = await navigator.serviceWorker.register('../sw.js'); //notice the file name
+    return swRegistration;
+}
+const requestNotificationPermission = async () => {
+    const permission = await window.Notification.requestPermission();
+    // value of permission can be 'granted', 'default', 'denied'
+    // granted: user has accepted the request
+    // default: user has dismissed the notification permission popup by clicking on x
+    // denied: user has denied the request.
+    if(permission !== 'granted'){
+        throw new Error('Permission not granted for Notification');
     }
-
-    //don't use it here if you use service worker
-    //for other stuff.
-    if (!"PushManager" in window) {
-        //push isn't supported
-        return;
-    }
-
-    //register the service worker
-    navigator.serviceWorker.register('../sw.js')
-        .then(() => {
-            console.log('serviceWorker installed!')
-            initPush();
-        })
-        .catch((err) => {
-            console.log(err)
-        });
 }
 
-function initPush() {
-    if (!navigator.serviceWorker.ready) {
-        return;
-    }
+const showLocalNotification = (title, body, swRegistration) => {
+    const options = {
+        body,
+        // here you can add more properties like icon, image, vibrate, etc.
+    };
+    swRegistration.showNotification(title, options);
+}
 
-    new Promise(function (resolve, reject) {
-        const permissionResult = Notification.requestPermission(function (result) {
-            resolve(result);
-        });
-
-        if (permissionResult) {
-            permissionResult.then(resolve, reject);
-        }
-    })
-        .then((permissionResult) => {
-            if (permissionResult !== 'granted') {
-                throw new Error('We weren\'t granted permission.');
-            }
-            subscribeUser();
-        });
+const main = async () => { //notice I changed main to async function so that I can use await for registerServiceWorker
+    check()
+    const swRegistration = await registerServiceWorker()
+    const permission =  await requestNotificationPermission()
+    //showLocalNotification('This is title', 'this is the message', swRegistration);
 }
 
 
-function subscribeUser() {
-    navigator.serviceWorker.ready
-        .then((registration) => {
-            const subscribeOptions = {
-                userVisibleOnly: true,
-                applicationServerKey: urlBase64ToUint8Array(
-                    'BPlME85QbhQIPj+tW1N8wUAInrDa8zdFLRSYyzTATAT9CUconj/vnIGSeH7Sgtpdr3im4fe1CKscoyshMdbKuko='
-                )
-            };
 
-            return registration.pushManager.subscribe(subscribeOptions);
-        })
-        .then((pushSubscription) => {
-            console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
-            storePushSubscription(pushSubscription);
-        });
-}
-
-function urlBase64ToUint8Array(base64String) {
-    var padding = '='.repeat((4 - base64String.length % 4) % 4);
-    var base64 = (base64String + padding)
-        .replace(/\-/g, '+')
-        .replace(/_/g, '/');
-
-    var rawData = window.atob(base64);
-    var outputArray = new Uint8Array(rawData.length);
-
-    for (var i = 0; i < rawData.length; ++i) {
-        outputArray[i] = rawData.charCodeAt(i);
-    }
-    return outputArray;
-}
-
-function storePushSubscription(pushSubscription) {
-    const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-
-    fetch('/push', {
-        method: 'POST',
-        body: JSON.stringify(pushSubscription),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-CSRF-Token': token
-        }
-    })
-        .then((res) => {
-            return res.json();
-        })
-        .then((res) => {
-            console.log(res)
-        })
-        .catch((err) => {
-            console.log(err)
-        });
-}
+//main();

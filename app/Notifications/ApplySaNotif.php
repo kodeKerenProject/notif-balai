@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\WebPush\WebPushMessage;
 use NotificationChannels\WebPush\WebPushChannel;
+use Carbon\Carbon;
 
 class ApplySaNotif extends Notification
 {
@@ -31,7 +32,7 @@ class ApplySaNotif extends Notification
      */
     public function via($notifiable)
     {
-        return [WebPushChannel::class];
+        return ['database', 'broadcast',WebPushChannel::class];
     }
 
     /**
@@ -57,16 +58,20 @@ class ApplySaNotif extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'title' => 'Hello from Cobaaa!',
+            'body' => 'Thank you for using our application.',
+            'action_url' => 'https://laravel.com',
+            'created' => Carbon::now()->toIso8601String()
         ];
     }
 
      public function toWebPush($notifiable, $notification)
     {
         return (new WebPushMessage)
-            ->title('I\'m Notification Title')
+            ->title('Hello from Cobaaa!')
             ->icon('/notification-icon.png')
-            ->body('Great, Push Notifications work!')
-            ->action('Open', true);
+            ->body('Thank you for using our application.')
+            ->action('View app', 'view_app')
+            ->data(['id' => $notification->id]);
     }
 }

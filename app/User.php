@@ -10,8 +10,7 @@ use NotificationChannels\WebPush\HasPushSubscriptions;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
-    use HasPushSubscriptions;
+    use Notifiable, HasPushSubscriptions;
     /**
      * The attributes that are mass assignable.
      *

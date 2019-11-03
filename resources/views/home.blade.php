@@ -72,13 +72,17 @@
                         </tr>
                         <tr>
                             <td><div class="font-tahap" style="margin-right: 10px;"><span class="badge font-tahap-icon badge-pill badge-{{ !is_null($tahap) && $tahap->jadwalSert == 1 ? 'success' : 'secondary' }}">&check;</span></td>
-                            <td><div class="font-tahap"> Penjadwalan Ambil/Kirim Sertifikat</div></td>
+                            <td><div class="font-tahap"> Penjadwalan Ambil/Kirim Sertifikat</div><button class="btn btn-outline-primary btn-block" id="notif">Make a Push Notification!</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-outline-success btn-block" id="acc">Enable</button></td>
                         </tr>
                     @endif
                     </table>
                 </div>
             </div>
         </div>
+        <!-- <notification-demo></notification-demo> -->
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header">@yield('card-header')</div>
