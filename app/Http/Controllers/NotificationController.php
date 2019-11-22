@@ -9,6 +9,7 @@ use App\Notifications\ApplySaNotif;
 use NotificationChannels\WebPush\PushSubscription;
 use App\User;
 
+
 class NotificationController extends Controller
 {
     /**
@@ -53,19 +54,18 @@ class NotificationController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request,User $user)
     {
         // pokona dek manggil notifna,kana func ieu
         //dd($request->user()->role_id);
         // disini buat ngatur siapa penerimanya
-         $userLain = $user->where('role_id',1)->get();
+         $userLain = $user->where('role_id',3)->get();
          // dd($userLain);
          foreach ($userLain as $penerima) { 
             $penerima->notify(new ApplySaNotif);
          }
-
-        return response()->json('Notification sent.', 201);
-    }
+}
 
     /**
      * Mark user's notification as read.

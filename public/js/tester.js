@@ -10,6 +10,7 @@ var isPushEnabled= false;
 var pushButtonDisabled= true;
 let notifications = [];
 let total;
+
 function RegisterServiceWorker() {
 	if (!('serviceWorker' in navigator)) {
         console.log('Service workers aren\'t supported in this browser.')

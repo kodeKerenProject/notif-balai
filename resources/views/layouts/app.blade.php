@@ -132,7 +132,7 @@
                         <ul class="nav navbar-nav">
                             @if (Auth::check())
                                 {{-- See resources/assets/js/components/NotificationsDropdown.vue --}}
-                                <!-- <notification-dropdown></notification-dropdown> -->
+                  
                                 <li class="nav-item">
                                                           <div class="dropdown">
   <a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
